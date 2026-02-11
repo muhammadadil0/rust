@@ -1,0 +1,27 @@
+enum LoginResult {
+    Success(String),
+    WrongPassword,
+    UserNotFound,
+}
+
+fn login(username: &str, password: &str) -> LoginResult {
+    if username == "adil" {
+        if password == "1234" {
+            LoginResult::Success(String::from("Welcome Adil"))
+        } else {
+            LoginResult::WrongPassword
+        }
+    } else {
+        LoginResult::UserNotFound
+    }
+}
+
+fn main() {
+    let return_value = login("adil", "12034");
+
+    match return_value {
+        LoginResult::Success(s) => println!("{}", s),
+        LoginResult::WrongPassword => println!("Wrong Password"),
+        LoginResult::UserNotFound => println!("User Not Found"),
+    }
+}
