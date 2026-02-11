@@ -53,3 +53,63 @@ match light{
   }
   
 }
+
+
+
+
+
+
+
+
+
+
+// enum TravelType{
+//   Car,
+//   Train,
+//   Aeroplane,
+   
+// }
+
+// impl TravelType{
+  
+//     fn travel_allownance(&self, miles:f32)->f32{
+      
+//   let allownance = match self{
+//           TravelType::Car => miles * 0.2,
+//           TravelType::Train => miles * 0.4,
+//           TravelType::Aeroplane => miles * 0.8
+//       };
+//       allownance
+//     }
+// }
+
+enum TravelType {
+  Car(f32),
+  Train(f32),
+  Aeroplane(f32)
+}
+
+impl TravelType{
+  
+  fn travel_allownance(&self)->f32{
+    
+    let allownance = match self {
+      
+      TravelType::Car(miles) => miles * 0.1,
+      TravelType::Train(miles) => miles * 0.2,
+      TravelType::Aeroplane(miles) => miles * 0.3,
+    };
+    allownance
+    
+  }
+}
+
+fn main(){
+  
+  let participant = TravelType::Car(30.1);
+  
+  let result =  participant.travel_allownance();
+  
+  println!("Result is : {}", result);
+   
+}
