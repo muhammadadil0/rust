@@ -1,0 +1,66 @@
+enum AccountStatus {
+    Active,
+    Blocked,
+}
+
+enum LoginResult {
+    Success(String),
+    WrongPassword,
+    UserNotFound,
+    AccountBlocked,
+}
+
+struct User {
+    username: String,
+    password: String,
+    phone: Option<String>,
+    status: AccountStatus,
+}
+
+impl User {
+    fn login(&self) -> LoginResult {
+
+        if let AccountStatus::Blocked = self.status {
+            return LoginResult::AccountBlocked;
+        }
+
+        if self.username == "adil" {
+            if self.password == "1234" {
+                LoginResult::Success(String::from("Login Successfully"))
+            } else {
+                LoginResult::WrongPassword
+            }
+        } else {
+            LoginResult::UserNotFound
+        }
+    }
+
+    fn show_phone(&self) {
+        match &self.phone {
+            Some(n) => println!("Phone Number is : {}", n),
+            None => println!("Phone Number Not Found"),
+        }
+    }
+
+    fn block_account(&mut self) {
+        self.status = AccountStatus::Blocked;
+    }
+}
+
+fn main() {
+    let user = User {
+        username: String::from("adil"),
+        password: String::from("1234"),
+        phone: Some(String::from("03347027")),
+        status: AccountStatus::Blocked,
+    };
+
+    let status = user.login();
+
+    match status {
+        LoginResult::Success(msg) => println!("{}", msg),
+        LoginResult::WrongPassword => println!("Wrong Password"),
+        LoginResult::UserNotFound => println!("User Not Found"),
+        LoginResult::AccountBlocked => println!("Account Blocked"),
+    }
+}
