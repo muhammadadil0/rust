@@ -1,0 +1,62 @@
+// Online Rust compiler to run Rust program online
+// Print "Try programiz.pro" message
+
+
+  struct Square {
+      
+      side:u32
+  }
+  
+  
+  trait Shape {
+      
+      fn area(&self)->u32;
+  }
+  
+  
+  impl Shape for Square {
+      
+      fn area(&self)->u32 {
+          self.side * self.side
+          
+      }
+  }
+  
+  
+  
+//   fn shape_properties (shape:impl Shape){
+      
+//       shape.area();
+//   }
+
+
+// fn shape_properties <T>(shape:T){}
+
+// fn shape_properties <T> (shape:T)
+// where 
+//  T: Shape ,
+ 
+//  {
+     
+//      shape.area();
+     
+//  }
+
+
+
+fn return_shape()-> impl Shape {
+    
+    let sq = Square {
+        
+        side : 5
+    };
+    sq
+    
+}
+
+
+
+
+fn main() {
+    println!("Try programiz.pro");
+}
