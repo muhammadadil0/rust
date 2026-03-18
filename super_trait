@@ -1,0 +1,92 @@
+// Online Rust compiler to run Rust program online
+// Print "Try programiz.pro" message
+
+trait Shape{
+    
+    fn area(&self)->f64;
+    fn name(&self)->&str;
+    
+}
+
+trait Printible:Shape {
+    fn printInfo(&self){
+        
+        println!("{} has area is : {}", self.name(), self.area());
+    }
+}
+
+trait Colored {
+    
+    fn color(&self)->&str;
+}
+struct Square {
+    
+    side:f64
+}
+
+struct Rectangle {
+    length:f64,
+    width:f64
+}
+
+
+impl Shape for Square {
+    
+    fn area(&self)->f64{
+        
+        self.side * self.side
+    }
+    
+    fn name(&self)->&str{
+        
+        "Square"
+    }
+}
+
+impl Shape for Rectangle {
+    
+    fn area(&self)->f64{
+        
+        self.length * self.width
+    }
+
+    fn name(&self)->&str{
+        
+        "Rectangle"
+    }
+    
+}
+
+impl Printible for Square {}
+impl Printible for Rectangle {}
+impl Colored for Square {}
+
+impl Colored for Rectangle {
+    fn color(&self)->&str{
+        "Blue"
+    }
+    
+}
+
+
+fn show_shape_info<T:Shape + Printible + Colored>(shape:&T){
+    
+    shape.printInfo();
+    println!("Color : {}", shape.color());
+}
+
+fn main() {
+    println!("Try programiz.pro");
+    
+    let sq = Square {
+        side:5.2
+    };
+    
+    let rec = Rectangle{
+        length:4.3,
+        width:5.3
+    };
+    
+    show_shape_info(&sq);
+    
+}
