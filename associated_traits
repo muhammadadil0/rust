@@ -1,0 +1,83 @@
+// Online Rust compiler to run Rust program online
+// Print "Try programiz.pro" message
+
+
+struct Km {
+    
+    values:u32
+}
+
+struct Kmh {
+    
+ values: u32
+}
+
+struct Miles {
+    values:u32
+}
+
+struct Mph {
+    
+    values: u32
+}
+
+
+// impl Kmh {
+    
+//     fn distance_in_three_hour (&self)->Km {
+        
+//         Km {
+//             values:self.values * 3
+//         }
+        
+        
+//     }
+// }
+
+
+// impl Mph {
+    
+//     fn distance_in_three_hour(&self)->Mph {
+        
+//       Mph {
+//             values:self.values * 3
+//       }
+//     }
+// }
+
+
+
+trait DistanceInThreeHour {
+    
+    type Distance;
+    
+    fn distance_three_hours(&self)->Self::Distance;
+}
+
+impl DistanceInThreeHour for Kmh {
+    
+    type Distance = Km;
+    
+    fn distance_three_hours(&self)->Self::Distance{
+        
+        Self::Distance {
+            values:self.values * 3;
+        }
+    }
+}
+
+impl DistanceInThreeHour for Mph {
+    
+    type Distance = Miles;
+    
+    fn distance_in_three_hours(&self)->Self::Distance {
+        
+        Self::Distance{
+            values:self.values * 3;
+        }
+    }
+}
+
+fn main() {
+    println!("Try programiz.pro");
+}
